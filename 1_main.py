@@ -16,10 +16,24 @@ for line in file_text:
 list_1.sort()
 list_2.sort()
 
+#calculates the distance in between the lists
 distance = 0
 for i in range(0, len(list_1)):
     distance += abs(list_1[i] - list_2[i])
 
-print(distance)
+print("Distance:", distance)
 
-    
+#dict used to keep track of how much times a number in list_1 appears in list_2
+similarity_tracker = {}
+
+for i in range(0, len(list_1)):
+    similarity_tracker[list_1[i]] = 0
+    for j in range(0, len(list_2)):
+        if list_2[j] == list_1[i]:
+            similarity_tracker[list_1[i]] += 1
+
+similarity_score = 0
+for key, value in similarity_tracker.items():
+    similarity_score += key * value
+
+print("Similairty score: ", similarity_score)
